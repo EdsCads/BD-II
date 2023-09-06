@@ -1,5 +1,6 @@
 CREATE DATABASE IF NOT EXISTS cartaoCredito;
-USE cartaoCredito;
+use cartaoCredito;
+         
 -- Criação da tabela Cliente
 CREATE TABLE Cliente (
     ID INT PRIMARY KEY,
@@ -22,7 +23,9 @@ CREATE TABLE ContaBancaria (
 CREATE TABLE CartaoCredito (
     NumeroCartao INT PRIMARY KEY,
     LimiteCredito DECIMAL(10, 2),
-    DataVencimento DATE
+    DataVencimento DATE,
+    ClienteID INT,
+    FOREIGN KEY (ClienteID) REFERENCES Cliente(ID)
 );
 
 -- Criação da relação de especialização: ContaCorrente

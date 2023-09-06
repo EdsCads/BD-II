@@ -14,10 +14,7 @@ public class main {
 
     public static void main(String[] args) {
 
-        ConexaoBD conexao = new ConexaoBD();
-        try{conexao.abrirConexao();}catch(SQLException e){}
-        
-          // Criar um cliente
+        // Criar um cliente
         Cliente cliente = new Cliente();
         cliente.setId(1);
         cliente.setNome("João da Silva");
@@ -48,8 +45,12 @@ public class main {
         ContaPoupanca contaPoupanca = new ContaPoupanca();
         contaPoupanca.setNumeroConta(contaBancaria.getNumeroConta());
         contaPoupanca.setTaxaJuros(BigDecimal.valueOf(0.03)); // 3% de taxa de juros
-
         
+        ConexaoBD conexao = new ConexaoBD();
+        try{conexao.abrirConexao();}catch(SQLException e){}
+        
+            conexao.conexao.
+                
         try{conexao.fecharConexao();}catch(SQLException e){}
     
     

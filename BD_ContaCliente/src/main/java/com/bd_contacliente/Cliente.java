@@ -62,6 +62,10 @@ public class Cliente {
         public void setTelefone(String telefone) {
             this.telefone = telefone;
         }
+        public void inserirBD(Connection con){
+            try{inserirCliente(con,this.id,this.nome,this.endereco,this.email,this.telefone)}catch(SQLException e){};
+        }
+        
     private static void inserirCliente(Connection conexao, int id, String nome, String endereco, String email, String telefone) throws SQLException {
         String sql = "INSERT INTO Cliente (ID, Nome, Endereco, Email, Telefone) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {

@@ -3,7 +3,7 @@ use cartaoCredito;
          
 -- Criação da tabela Cliente
 CREATE TABLE Cliente (
-    ID INT PRIMARY KEY,
+    ID INT PRIMARY KEY AUTO_INCREMENT,
     Nome VARCHAR(255),
     Endereco VARCHAR(255),
     Email VARCHAR(255),
@@ -12,7 +12,7 @@ CREATE TABLE Cliente (
 
 -- Criação da tabela ContaBancaria
 CREATE TABLE ContaBancaria (
-    NumeroConta INT PRIMARY KEY,
+    NumeroConta INT PRIMARY KEY AUTO_INCREMENT,
     Saldo DECIMAL(10, 2),
     TipoConta VARCHAR(20),
     ClienteID INT,
@@ -21,7 +21,7 @@ CREATE TABLE ContaBancaria (
 
 -- Criação da tabela CartaoCredito
 CREATE TABLE CartaoCredito (
-    NumeroCartao INT PRIMARY KEY,
+    NumeroCartao INT PRIMARY KEY AUTO_INCREMENT,
     LimiteCredito DECIMAL(10, 2),
     DataVencimento DATE,
     ClienteID INT,
@@ -30,14 +30,14 @@ CREATE TABLE CartaoCredito (
 
 -- Criação da relação de especialização: ContaCorrente
 CREATE TABLE ContaCorrente (
-    NumeroConta INT PRIMARY KEY,
+    NumeroConta INT PRIMARY KEY AUTO_INCREMENT,
     TaxaManutencao DECIMAL(5, 2),
     FOREIGN KEY (NumeroConta) REFERENCES ContaBancaria(NumeroConta)
 );
 
 -- Criação da relação de especialização: ContaPoupanca
 CREATE TABLE ContaPoupanca (
-    NumeroConta INT PRIMARY KEY,
+    NumeroConta INT PRIMARY KEY AUTO_INCREMENT,
     TaxaJuros DECIMAL(5, 2),
     FOREIGN KEY (NumeroConta) REFERENCES ContaBancaria(NumeroConta)
 );

@@ -30,19 +30,28 @@ END //
 
 DELIMITER ;
 
+drop trigger if exists GarantirCartaoCreditoParaCliente;
 DELIMITER //
 
 CREATE TRIGGER GarantirCartaoCreditoParaCliente
-BEFORE INSERT ON Cliente
-FOR EACH ROW
+AFTER INSERT 
+ON Cliente FOR EACH ROW
 BEGIN
+	DECLARE IDCLI INT;
+    DECLARE DATAVENC DATE;
+    DECLARE LIMITE DECIMAL(10,2);
     IF NEW.ID NOT IN (
         SELECT DISTINCT ClienteID
-        FROM CartaoCredito
+        FROM cartaocredito
     ) THEN
-        SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Cada cliente deve ter pelo menos um cartão de crédito.';
+		SET IDCLI = NEW.ID;
+        SET DATAVENC = date_add(curdate(),INTERVAL 16 MONTH);
+        SET LIMITE = 500.00;
+                
+        INSERT INTO cartaocredito 
+        VALUES ("",LIMITE,DATAVENC,IDCLI);
     END IF;
+
 END //
 
 DELIMITER ;

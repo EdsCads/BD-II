@@ -20,10 +20,10 @@ BEGIN
     -- Inserir um registro na entidade derivada apropriada
     IF v_TipoConta = 'Conta Corrente' THEN
         INSERT INTO ContaCorrente (NumeroConta, TaxaManutencao)
-        VALUES (p_NumeroConta, 0.0); -- Definir a taxa de manutenção para 0 no caso de depósito
+        VALUES (p_NumeroConta, 0.0);
     ELSEIF v_TipoConta = 'Conta Poupanca' THEN
         INSERT INTO ContaPoupanca (NumeroConta, TaxaJuros)
-        VALUES (p_NumeroConta, 0.0); -- Definir a taxa de juros para 0 no caso de depósito
+        VALUES (p_NumeroConta, 0.0);
     END IF;
     
     -- Confirmar a transação

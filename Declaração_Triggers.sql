@@ -1,16 +1,17 @@
 DELIMITER //
-
-CREATE FUNCTION CalcularSaldoTotalCliente(p_ClienteID INT) RETURNS DECIMAL(10, 2)
+CREATE FUNCTION InserirCliente(
+    p_Nome VARCHAR(255),
+    p_Endereco VARCHAR(255),
+    p_Email VARCHAR(255),
+    p_Telefone VARCHAR(20)
+)
+RETURNS INT
 BEGIN
-    DECLARE v_SaldoTotal DECIMAL(10, 2);
-
-    SELECT SUM(Saldo) INTO v_SaldoTotal
-    FROM ContaBancaria
-    WHERE ClienteID = p_ClienteID;
-
-    RETURN v_SaldoTotal;
+    INSERT INTO Cliente (Nome, Endereco, Email, Telefone)
+    VALUES (p_Nome, p_Endereco, p_Email, p_Telefone);
+    
+    RETURN LAST_INSERT_ID();
 END //
-
 DELIMITER ;
 
 DELIMITER //
